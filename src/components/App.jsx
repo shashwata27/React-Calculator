@@ -42,42 +42,48 @@ export default class App extends React.Component {
     this.setState({ memory: this.state.memory + parseInt(this.state.display) });
   };
 
-  equalsHandeler = () => {
-    let temp = "";
+  equalsHelper = (temp, arg) => {
+    while (temp.indexOf(arg) >= 0) {
+      for (let x = 0; x < temp.length; x++) {
+        if (temp[x] === arg) {
+          if (arg === "/") {
+            temp[x - 1] = parseInt(temp[x - 1]) / parseInt(temp[x + 1]);
+          } else if (arg === "*") {
+            temp[x - 1] = parseInt(temp[x - 1]) * parseInt(temp[x + 1]);
+          } else if (arg === "+") {
+            temp[x - 1] = parseInt(temp[x - 1]) + parseInt(temp[x + 1]);
+          } else {
+            temp[x - 1] = parseInt(temp[x - 1]) - parseInt(temp[x + 1]);
+          }
 
-    // calculation
-    const temp2 = this.state.display.split(" ");
-    for (let x in temp2) {
-      if (temp2[x] === "/") {
-        temp2[x - 1] = parseInt(temp2[x - 1]) / parseInt(temp2[x + 1]);
-        temp2.pop(x);
-        temp2.pop(x + 1);
+          // order important !!
+          console.log("inner inner", temp);
+          temp.pop(x + 1);
+          temp.pop(x);
+          break;
+        }
+        console.log("inner ", temp);
       }
-      console.log(temp2);
     }
-    // for (let x in temp2) {
-    //   if (temp2[x] === "*") {
-    //     temp2[x - 1] = parseFloat(temp2[x - 1]) * parseFloat(temp2[x + 1]);
-    //     temp2.pop(x);
-    //     temp2.pop(x + 1);
-    //   }
-    // }
-    // for (let x in temp2) {
-    //   if (temp2[x] === "+") {
-    //     temp2[x - 1] = parseFloat(temp2[x - 1]) + parseFloat(temp2[x + 1]);
-    //     temp2.pop(x);
-    //     temp2.pop(x + 1);
-    //   }
-    // }
-    // for (let x in temp2) {
-    //   if (temp2[x] === "-") {
-    //     temp2[x - 1] = parseFloat(temp2[x - 1]) - parseFloat(temp2[x + 1]);
-    //     temp2.pop(x);
-    //     temp2.pop(x + 1);
-    //   }
-    // }
+    return temp;
+  };
+  equalsHandeler = () => {
+    // calculation
+    if (this.state.display.indexOf(" ") >= 0) {
+      let temp = this.state.display.split(" ");
 
-    this.setState({ display: temp, mplus: true });
+      console.log(temp);
+      temp = this.equalsHelper(temp, "/");
+      console.log(temp);
+      temp = this.equalsHelper(temp, "*");
+      console.log(temp);
+      temp = this.equalsHelper(temp, "+");
+      console.log(temp);
+      temp = this.equalsHelper(temp, "-");
+      console.log(temp);
+
+      this.setState({ display: temp[0], mplus: true });
+    }
   };
 
   render() {
