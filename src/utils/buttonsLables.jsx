@@ -3,8 +3,9 @@ const buttonLabels = {
   operators: ["*", "/", "+", "-"],
   clear: ["c"],
   equals: ["="],
-  memoryDirect: ["M+", "MC"],
+  memoryPlus: ["M+"],
   memoryRead: ["MR"],
+  memoryClear: ["MC"],
 };
 
 export default buttonLabels;
