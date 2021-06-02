@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+.main {
+  height: 100vh;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.display {
+  text-align: right;
+  flex: 1;
+}
+
+.buttons {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.numOps {
+  flex: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.memory {
+  flex: 1;
+}
+
+.nums {
+  flex: 3;
+}
+.ops {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+button {
+  padding: 10px 30px;
+}

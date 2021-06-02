@@ -1,7 +1,7 @@
 import React from "react";
 import ButtonWrapper from "./ButtonWrapper";
 import buttonLabels from "../utils/buttonsLables";
-import "../css/style.css";
+import "../css/style3.css";
 
 const {
   numbers,
@@ -90,7 +90,7 @@ export default class App extends React.Component {
         <div className="display">{this.state.display}</div>
         <div className="buttons">
           <div className="numOps">
-            <div>
+            <div className="num">
               <ButtonWrapper names={numbers} handler={this.numbersHandeler} />
               <ButtonWrapper names={equals} handler={this.equalsHandeler} />
             </div>
