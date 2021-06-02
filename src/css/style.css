@@ -23,8 +23,9 @@
   padding: 20px;
   text-align: right;
   border-radius: 10px;
-  min-width: 70vh;
-  max-width: 80vh;
+  min-width: 80vh;
+  max-width: 90vh;
+  min-height: 5vh;
 }
 .buttons {
   min-width: 70vh;
