@@ -56,31 +56,28 @@ export default class App extends React.Component {
             temp[x - 1] = parseInt(temp[x - 1]) - parseInt(temp[x + 1]);
           }
 
-          // order important !!
-          console.log("inner inner", temp);
-          temp.pop(x + 1);
-          temp.pop(x);
+          temp.splice(x, 2);
           break;
         }
-        console.log("inner ", temp);
       }
     }
     return temp;
   };
   equalsHandeler = () => {
-    // calculation
+    // validation
+    // debugger;
     if (this.state.display.indexOf(" ") >= 0) {
       let temp = this.state.display.split(" ");
 
-      console.log(temp);
+      // Calculation
+
       temp = this.equalsHelper(temp, "/");
-      console.log(temp);
+
       temp = this.equalsHelper(temp, "*");
-      console.log(temp);
+
       temp = this.equalsHelper(temp, "+");
-      console.log(temp);
+
       temp = this.equalsHelper(temp, "-");
-      console.log(temp);
 
       this.setState({ display: temp[0], mplus: true });
     }
