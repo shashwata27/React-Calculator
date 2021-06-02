@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonWrapper from "./ButtonWrapper";
 import buttonLabels from "../utils/buttonsLables";
+import "../css/style.css";
 
 const {
   numbers,
@@ -85,19 +86,38 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>{this.state.display}</div>
-        <ButtonWrapper names={numbers} handler={this.numbersHandeler} />
-        <ButtonWrapper names={operators} handler={this.operatorHandeler} />
-        <ButtonWrapper names={clear} handler={this.clearHandeler} />
-        <ButtonWrapper names={equals} handler={this.equalsHandeler} />
-        <ButtonWrapper
-          names={memoryPlus}
-          handler={this.memoryPlusHandeler}
-          disable={this.state.mplus}
-        />
-        <ButtonWrapper names={memoryRead} handler={this.memoryReadHandeler} />
-        <ButtonWrapper names={memoryClear} handler={this.memoryClearHandeler} />
+      <div className="main">
+        <div className="display">{this.state.display}</div>
+        <div className="buttons">
+          <div className="numOps">
+            <div>
+              <ButtonWrapper names={numbers} handler={this.numbersHandeler} />
+              <ButtonWrapper names={equals} handler={this.equalsHandeler} />
+            </div>
+            <div className="ops">
+              <ButtonWrapper
+                names={operators}
+                handler={this.operatorHandeler}
+              />
+            </div>
+          </div>
+          <div className="memory">
+            <ButtonWrapper names={clear} handler={this.clearHandeler} />
+            <ButtonWrapper
+              names={memoryPlus}
+              handler={this.memoryPlusHandeler}
+              disable={this.state.mplus}
+            />
+            <ButtonWrapper
+              names={memoryRead}
+              handler={this.memoryReadHandeler}
+            />
+            <ButtonWrapper
+              names={memoryClear}
+              handler={this.memoryClearHandeler}
+            />
+          </div>
+        </div>
       </div>
     );
   }

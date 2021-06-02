@@ -5,10 +5,18 @@ let temp = null;
 export default class Button extends React.Component {
   helper = () => {
     if (this.props.disable === undefined) {
-      temp = <button onClick={this.props.handler}>{this.props.name}</button>;
+      temp = (
+        <button id={this.props.name} onClick={this.props.handler}>
+          {this.props.name}
+        </button>
+      );
     } else {
       temp = (
-        <button onClick={this.props.handler} disabled={!this.props.disable}>
+        <button
+          id={this.props.name}
+          onClick={this.props.handler}
+          disabled={!this.props.disable}
+        >
           {this.props.name}
         </button>
       );
