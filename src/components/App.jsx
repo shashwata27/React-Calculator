@@ -14,25 +14,32 @@ const {
 } = buttonLabels;
 
 export default class App extends React.Component {
-  state = { display: "", memory: 0, mplus: true };
+  state = { display: "", memory: 0, mPlusActive: true };
 
   numbersHandeler = (number) => {
     this.setState({ display: this.state.display + number });
   };
 
   operatorHandeler = (operator) => {
+    let text = this.state.display;
+    const len = this.state.display.length;
+    if (text[len - 1] === " ") {
+      text = text.slice(0, len - 3) + ` ${operator} `;
+    } else {
+      text = text + ` ${operator} `;
+    }
     this.setState({
-      display: this.state.display + ` ${operator} `,
-      mplus: false,
+      display: text,
+      mPlusActive: false,
     });
   };
 
   clearHandeler = () => {
-    this.setState({ display: "", mplus: true });
+    this.setState({ display: "", mPlusActive: true });
   };
 
   memoryReadHandeler = () => {
-    this.setState({ display: this.state.memory, mplus: true });
+    this.setState({ display: this.state.memory, mPlusActive: true });
   };
 
   memoryClearHandeler = () => {
@@ -43,44 +50,44 @@ export default class App extends React.Component {
     this.setState({ memory: this.state.memory + parseInt(this.state.display) });
   };
 
-  equalsHelper = (temp, arg) => {
-    while (temp.indexOf(arg) >= 0) {
-      for (let x = 0; x < temp.length; x++) {
-        if (temp[x] === arg) {
-          if (arg === "/") {
-            temp[x - 1] = parseInt(temp[x - 1]) / parseInt(temp[x + 1]);
-          } else if (arg === "*") {
-            temp[x - 1] = parseInt(temp[x - 1]) * parseInt(temp[x + 1]);
-          } else if (arg === "+") {
-            temp[x - 1] = parseInt(temp[x - 1]) + parseInt(temp[x + 1]);
-          } else {
-            temp[x - 1] = parseInt(temp[x - 1]) - parseInt(temp[x + 1]);
-          }
+  equalsHelper = (temp) => {
+    for (let y = 0; y < operators.length; y++) {
+      let arg = operators[y];
+      while (temp.indexOf(arg) >= 0) {
+        for (let x = 0; x < temp.length; x++) {
+          if (temp[x] === arg) {
+            if (arg === "/") {
+              temp[x - 1] = parseInt(temp[x - 1]) / parseInt(temp[x + 1]);
+            } else if (arg === "*") {
+              temp[x - 1] = parseInt(temp[x - 1]) * parseInt(temp[x + 1]);
+            } else if (arg === "+") {
+              temp[x - 1] = parseInt(temp[x - 1]) + parseInt(temp[x + 1]);
+            } else {
+              temp[x - 1] = parseInt(temp[x - 1]) - parseInt(temp[x + 1]);
+            }
 
-          temp.splice(x, 2);
-          break;
+            temp.splice(x, 2);
+            break;
+          }
         }
       }
     }
     return temp;
   };
   equalsHandeler = () => {
+    let text = this.state.display;
     // validation
-    // debugger;
-    if (this.state.display.indexOf(" ") >= 0) {
-      let temp = this.state.display.split(" ");
+    if (text.indexOf(" ") >= 0) {
+      // deleting lingering operators
+      if (text[text.length - 1] === " ") {
+        text = text.slice(0, text.length - 3);
+      }
+      let temp = text.split(" ");
 
       // Calculation
+      temp = this.equalsHelper(temp);
 
-      temp = this.equalsHelper(temp, "/");
-
-      temp = this.equalsHelper(temp, "*");
-
-      temp = this.equalsHelper(temp, "+");
-
-      temp = this.equalsHelper(temp, "-");
-
-      this.setState({ display: temp[0], mplus: true });
+      this.setState({ display: temp[0], mPlusActive: true });
     }
   };
 
@@ -106,7 +113,7 @@ export default class App extends React.Component {
             <ButtonWrapper
               names={memoryPlus}
               handler={this.memoryPlusHandeler}
-              disable={this.state.mplus}
+              disable={this.state.mPlusActive}
             />
             <ButtonWrapper
               names={memoryRead}
