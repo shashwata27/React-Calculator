@@ -1,0 +1,92 @@
+.main {
+  top: 20vh;
+  right: -80vh;
+}
+.ui.card > .image {
+  min-height: 10vh;
+  text-align: right;
+  padding: 4vh 20px 0;
+  font-size: 24px;
+  font-weight: 600;
+  background-color: rgb(82, 82, 82);
+  color: aliceblue;
+}
+
+.num > .ui.compact.icon.button {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 1px;
+}
+
+#c {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+#MR,
+#MC {
+  padding-left: 11px;
+  padding-right: 11px;
+}
+
+.memory :nth-child(2) {
+  margin-left: 4.45px;
+}
+.memory :nth-child(2),
+.memory :nth-child(3),
+.memory :nth-child(4) {
+  background-color: rgb(85, 85, 255);
+  color: aliceblue;
+  margin-top: 2px;
+}
+
+.num :nth-last-child(2) {
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+}
+
+.num :last-child {
+  background-color: green;
+  color: aliceblue;
+}
+.ops > .ui.compact.icon.button {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 1px;
+  border-radius: 20px;
+  background-color: orange;
+  color: aliceblue;
+}
+.ops > .ui.compact.icon.button:hover {
+  background-color: #e0e1e2;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.ops
+  > .ui.compact.icon.button
+  + .ui.compact.icon.button
+  + .ui.compact.icon.button {
+  padding-left: 17px;
+  padding-right: 17px;
+}
+.ops
+  > .ui.compact.icon.button
+  + .ui.compact.icon.button
+  + .ui.compact.icon.button
+  + .ui.compact.icon.button {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.memory :first-child {
+  background-color: red;
+  color: aliceblue;
+}
+
+.ops > button {
+  border-radius: 10px;
+}

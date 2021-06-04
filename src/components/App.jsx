@@ -1,7 +1,8 @@
 import React from "react";
 import ButtonWrapper from "./ButtonWrapper";
 import buttonLabels from "../utils/buttonsLables";
-import "../css/style3.css";
+// import "../css/style3.css";
+import "../css/semanticStyle.css";
 
 const {
   numbers,
@@ -82,6 +83,9 @@ export default class App extends React.Component {
       if (text[text.length - 1] === " ") {
         text = text.slice(0, text.length - 3);
       }
+      if (text[0] === " ") {
+        text = text.slice(3, text.length);
+      }
       let temp = text.split(" ");
 
       // Calculation
@@ -93,15 +97,15 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="main">
-        <div className="display">{this.state.display}</div>
-        <div className="buttons">
-          <div className="numOps">
-            <div className="num">
+      <div className="main ui card">
+        <div className="display image ">{this.state.display}</div>
+        <div className="buttons content">
+          <div className="numOps ui grid">
+            <div className="num twelve wide column ">
               <ButtonWrapper names={numbers} handler={this.numbersHandeler} />
               <ButtonWrapper names={equals} handler={this.equalsHandeler} />
             </div>
-            <div className="ops">
+            <div className="ops four wide column ">
               <ButtonWrapper
                 names={operators}
                 handler={this.operatorHandeler}

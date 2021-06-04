@@ -13,7 +13,12 @@ export default class Button extends React.Component {
   render() {
     this.helper();
     return (
-      <button id={this.props.name} onClick={this.props.handler} disabled={temp}>
+      <button
+        id={this.props.name}
+        onClick={this.props.handler}
+        disabled={temp}
+        className="ui compact icon massive button "
+      >
         {this.props.name}
       </button>
     );
